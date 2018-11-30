@@ -39,7 +39,7 @@ __all__ = [
     "ANCHOR_START",
     "ANCHOR_BOTH",
     ]
-
+print(dir(_re2))
 # Module-private compilation function, for future caching, other enhancements
 _compile = _re2._compile
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from setuptools import setup, Extension
+from Cython.Build import cythonize
 
 setup(
     name="fb-re2",
@@ -18,9 +19,12 @@ setup(
     maintainer_email="sid0@fb.com",
     py_modules = ["re2"],
     test_suite = "tests.test_match.TestMatch",
-    ext_modules = [Extension("_re2",
-      sources = ["_re2.cc"],
-      libraries = ["re2"],
-      extra_compile_args=['-std=c++11'],
-      )],
+    ext_modules = cythonize(
+    [
+        Extension("_re2",
+         sources=["*.pyx"],
+         libraries=["re2"],
+         extra_compile_args=['-std=c++11'],
+         )
+    ]),
     )
